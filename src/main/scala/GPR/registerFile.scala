@@ -37,14 +37,16 @@ class registerFile extends Module
       val readData2    = Output(UInt(32.W))
     })
 
-
+  //Storage unit for registers
   val registerFile = Mem(32, UInt(32.W))
+  //Wire declarations for input/output ports
   val readAddress1 = Wire(UInt(5.W))
   val readAddress2 = Wire(UInt(5.W))
   val writeAddress = Wire(UInt(5.W))
   val writeData    = Wire(UInt(32.W))
   val writeEnable  = Wire(Bool())
 
+  //Setting up read and write sources based on test harness or normal operation
   when(testHarness.setup.setup){
     readAddress1 := testHarness.setup.readAddress
     readAddress2 := io.readAddress2
@@ -59,19 +61,19 @@ class registerFile extends Module
     writeAddress := io.writeAddress
   }
 
-
+  //Update test updates
   testHarness.testUpdates.writeData := writeData
   testHarness.testUpdates.writeEnable := writeEnable
   testHarness.testUpdates.writeAddress := writeAddress
 
-
+  //Write operation
   when(writeEnable){
     when(writeAddress =/= 0.U){
       registerFile(writeAddress) := writeData
     }
   }
 
-
+  //Read Operation
   io.readData1 := 0.U
   io.readData2 := 0.U
   when(readAddress1 =/= 0.U){ io.readData1 := registerFile(readAddress1) }

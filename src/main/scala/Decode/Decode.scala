@@ -107,7 +107,7 @@ class Decode extends Module {
     io.instruction.asUInt(),
     NOP,
     opcodeMap)
-
+//Assign decoded control signals to module outputs
   io.controlSignals.memToReg   := decodedControlSignals(0)
   io.controlSignals.regWrite   := decodedControlSignals(1)
   io.controlSignals.memRead    := decodedControlSignals(2)

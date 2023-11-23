@@ -18,6 +18,7 @@ class HazardUnit extends Module
 {
   val io = IO(
     new Bundle {
+      
         val branchType          = Input(UInt(3.W))
         val controlSignalsEXB   = Input(new ControlSignals)
         val controlSignalsMEMB  = Input(new ControlSignals)
@@ -98,4 +99,5 @@ class HazardUnit extends Module
   io.flushE   := io.stall | io.branchMispredicted
   //io.flushE   := io.stall | io.branchMispredicted | io.stall_membusy
 
+  
 }

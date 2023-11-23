@@ -15,7 +15,7 @@ import chisel3._
 import chisel3.util._
 import config.{ControlSignals, IMEMsetupSignals, Inst, Instruction}
 import config.Inst._
-import InstructionMemory.InstructionMemory
+import combine.combine
 
 class IF(BinaryFile: String) extends Module
 {
@@ -46,7 +46,7 @@ class IF(BinaryFile: String) extends Module
     val instruction        = Output(new Instruction)
   })
 
-  val InstructionMemory = Module(new InstructionMemory(BinaryFile))
+  val InstructionMemory = Module(new combine(BinaryFile))
   val BTB               = Module(new BTB_direct)
   val nextPC            = WireInit(UInt(), 0.U)
   val PC                = RegInit(UInt(32.W), 0.U)

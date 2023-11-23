@@ -16,6 +16,7 @@ import chisel3._
 import chisel3.util._
 import chisel3.util.{ BitPat, Cat }
 
+//Operations for ALU and MDU
 object ALUOps {
   val ADD    = 0.U(5.W)
   val SUB    = 1.U(5.W)
@@ -44,6 +45,7 @@ object MDUOps {
   val REMU   = 23.U(5.W)
 }
 
+//Definitions for different branch types, operand selections, and immediate formats
 object branch_types {
   val beq  = 0.asUInt(3.W)
   val neq  = 1.asUInt(3.W)
@@ -77,6 +79,7 @@ object ImmFormat {
   val DC     = 0.asUInt(3.W)
 }
 
+//Control signal defaults and instruction structures
 object ControlSignalsOB {
   def nop: ControlSignals = {
     val b = Wire(new ControlSignals)
@@ -123,6 +126,7 @@ object Inst{
   }
 }
 
+//Signal structures for processor control and memory
 class ControlSignals extends Bundle(){
   val memToReg   = Bool()
   val regWrite   = Bool()

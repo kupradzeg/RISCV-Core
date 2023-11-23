@@ -25,31 +25,35 @@ class Branch_OP extends Module {
 
   //Branch lookup
   io.branchTaken := 0.U
+
+  //Convert source values to signed integers for comparison
   val lhs = io.src1.asSInt
   val rhs = io.src2.asSInt
+
+
   switch(io.branchType) {
-    is(beq) {
+    is(beq) { //Branch if equal
       io.branchTaken := (lhs === rhs)
     }
-    is(neq) {
+    is(neq) { //Branch if not equal
       io.branchTaken := (lhs =/= rhs)
     }
-    is(gte) {
+    is(gte) { //Branch if greater than or equal
       io.branchTaken := (lhs >= rhs)
     }
-    is(lt) {
+    is(lt) { //Branch if less than
       io.branchTaken := (lhs < rhs)
     }
-    is(gteu) {
+    is(gteu) { //Branch if greater than or equal (Unsigned)
       io.branchTaken := (lhs >= rhs)
     }
-    is(ltu) {
+    is(ltu) { //Branch if less than (unsigned)
       io.branchTaken := (lhs < rhs)
     }
-    is(jump) {
+    is(jump) { //Unconditional Jump
       io.branchTaken := (1.U)
     }
-    is(DC) {
+    is(DC) { //Don't care, No branch
       io.branchTaken := (0.U)
     }
   }
