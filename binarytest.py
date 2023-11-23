@@ -5,7 +5,7 @@
 #1.Make sure script is placed in RISCV-Core/ Folder
 #2.Make sure python is installed
 #3.Use command 'python binarytest.py' to run the script
-#4.Choose either .dasm(compiled disassembly file) file or hexfile directly.  (Make sure the ending of the file is .dasm, change if necessary)
+#4.Choose either .dasm(compi1led disassembly file) file or hexfile directly.  (Make sure the ending of the file is .dasm, change if necessary)
 #5.In some cases datafile will also be required if the .dasm has .data section
 #in this case one can generate data dump file using the following command:
 #"riscv32-unknown-elf-objdump -s -j .data *nameofassemblyfile* > data.dump"
